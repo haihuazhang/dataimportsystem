@@ -1,0 +1,17 @@
+projection implementation in class ZBP_C_HDT_DMP_DATA unique;
+strict ( 2 );
+use draft;
+define behavior for ZHDC_DMP_T_DATA alias VersionData
+use etag
+
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+}

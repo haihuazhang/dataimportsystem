@@ -1,0 +1,19 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "数据管理系统-数据抽取JOB",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZHD_JT_IMPORT"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_ID",
+        "value": ""
+      }
+    ]
+  }
+}

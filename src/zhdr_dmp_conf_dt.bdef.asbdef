@@ -1,0 +1,352 @@
+managed implementation in class ZBP_R_HDT_DMP_DT unique;
+strict ( 2 );
+with draft;
+
+
+define behavior for ZHDR_DMP_CONF_DT alias DataType
+implementation in class ZBP_R_HDT_DMP_DT unique
+persistent table zhdt_dmp_dt
+draft table zhdt_dmp_dt_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+
+{
+  field ( readonly )
+  UUID,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+  field ( numbering : managed )
+  UUID;
+
+  association _SourceSystem { create; with draft; }
+  association _Excel { create; with draft; }
+  association _Validate { create; with draft; }
+  association _Conversion { create; with draft; }
+  association _TargetSystem { create; with draft; }
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zhdt_dmp_dt
+    {
+      UUID               = uuid;
+      Zzmodule           = zzmodule;
+      Name               = name;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+define behavior for ZHDR_DMP_CONF_SRC alias SourceSystem
+implementation in class ZBP_R_HDT_DMP_COM_SRC unique
+persistent table zhdt_dmp_com_src
+draft table zhdt_dmp_com_s_d
+etag master LocalLastChangedAt
+
+lock dependent by _DataType
+authorization dependent by _DataType
+{
+  field ( readonly )
+  //   UUID,
+  UUIDDataType,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+  field ( numbering : managed, readonly ) UUID;
+
+  association _DataType { with draft; }
+  //  create;
+  update;
+  delete;
+
+
+  mapping for zhdt_dmp_com_src
+    {
+      UUID               = uuid;
+      UuidDatatype       = uuid_datatype;
+      Name               = name;
+      Destination        = destination;
+      Class              = class;
+      DestinationType    = destination_type;
+      SystemID           = system_id;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+define behavior for ZHDR_DMP_CONF_EXCELCONFIG alias Excel
+implementation in class ZBP_R_HDT_DMP_EXCEL unique
+persistent table zhdt_dmp_excel
+draft table zhdt_dmp_excel_d
+etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+lock dependent by _DataType
+authorization dependent by _DataType
+//authorization master( global )
+
+{
+  field ( readonly )
+  UUIDDataType,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+
+  //  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) UUID;
+
+  association _DataType { with draft; }
+  association _ExcelStructure { create; with draft; }
+
+  //  draft action Edit;
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+
+  mapping for zhdt_dmp_excel
+    {
+      UUID               = uuid;
+      UuidDatatype       = uuid_datatype;
+      Name               = name;
+      MimeType           = mime_type;
+      FileName           = file_name;
+      Template           = template;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+
+define behavior for ZHDR_DMP_CONF_VALIDATE alias Validate
+implementation in class ZBP_R_HDT_DMP_VAD unique
+persistent table zhdt_dmp_vad
+draft table zhdt_dmp_vad_d
+etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+//authorization master( global )
+lock dependent by _DataType
+authorization dependent by _DataType
+
+{
+  field ( readonly )
+  UUIDDataType,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+
+  //  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) UUID;
+
+  association _DataType { with draft; }
+  //  draft action Edit;
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+
+  mapping for zhdt_dmp_vad
+    {
+      UUID               = uuid;
+      UuidDatatype       = uuid_datatype;
+      Name               = name;
+      Class              = class;
+      Sequence           = sequence;
+      RegExpression      = reg_expression;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+define behavior for ZHDR_DMP_CONF_CONVERSION alias Conversion
+implementation in class ZBP_R_HDT_DMP_CONV unique
+persistent table zhdt_dmp_conv
+draft table zhdt_dmp_conv_d
+etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+//authorization master( global )
+lock dependent by _DataType
+authorization dependent by _DataType
+{
+  field ( readonly )
+  UUIDDataType,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+
+  //  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) UUID;
+
+  association _DataType { with draft; }
+  //  draft action Edit;
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+
+  mapping for zhdt_dmp_conv
+    {
+      UUID               = uuid;
+      UuidDatatype       = uuid_datatype;
+      Name               = name;
+      Class              = class;
+      Sequence           = sequence;
+      RegExpression      = reg_expression;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+define behavior for ZHDR_DMP_CONF_TGT alias TargetSystem
+implementation in class ZBP_R_HDT_DMP_COM_TGT unique
+persistent table zhdt_dmp_com_tgt
+draft table zhdt_dmp_com_t_d
+etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+//authorization master( global )
+lock dependent by _DataType
+authorization dependent by _DataType
+
+{
+  field ( readonly )
+  UUIDDataType,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+
+  //  create;
+  update;
+  delete;
+
+  //  draft action Edit;
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+  field ( numbering : managed, readonly ) UUID;
+
+  association _DataType { with draft; }
+
+  mapping for zhdt_dmp_com_tgt
+    {
+      UUID               = uuid;
+      UuidDatatype       = uuid_datatype;
+      Name               = name;
+      Destination        = destination;
+      Class              = class;
+      DestinationType    = destination_type;
+      SystemID           = system_id;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+define behavior for ZHDR_DMP_CONF_EXCELSTRUCTURE alias ExcelStructure
+implementation in class ZBP_R_HDT_DMP_EXCEL_S unique
+persistent table zhdt_dmp_excel_s
+draft table zhdt_dmp_ex000_d
+etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+//authorization master( global )
+lock dependent by _DataType
+authorization dependent by _DataType
+{
+  field ( readonly )
+  UUIDDataType,
+  UUIDExcel,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+  field ( numbering : managed, readonly ) UUID;
+  //  create;
+  update;
+  delete;
+
+  association _Excel { with draft; }
+  association _DataType { with draft; }
+
+  //  draft action Edit;
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+
+  mapping for zhdt_dmp_excel_s
+    {
+      UUID               = uuid;
+      UuidDatatype       = uuid_datatype;
+      UuidExcel          = uuid_excel;
+      RootNode           = root_node;
+      SheetName          = sheet_name;
+      SheetNameUp        = sheet_name_up;
+      Structname         = structname;
+      FieldName          = field_name;
+      FieldNameUp        = field_name_up;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

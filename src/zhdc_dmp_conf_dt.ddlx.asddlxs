@@ -1,0 +1,77 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: '数据类型',
+    typeNamePlural: '数据类型'
+  }
+}
+annotate view ZHDC_DMP_CONF_DT with
+{
+  @UI.facet: [ 
+  {
+    id: 'idIdentification',
+    type: #IDENTIFICATION_REFERENCE,
+    label: '数据类型',
+    position: 10
+  },
+  {
+    id: 'SourceSystem',
+                purpose:       #STANDARD,
+                type:          #LINEITEM_REFERENCE,
+                label:         '源系统',
+                position:      20,
+                targetElement: '_SourceSystem'},
+  {
+    id: 'Excel',
+                purpose:       #STANDARD,
+                type:          #LINEITEM_REFERENCE,
+                label:         'Excel',
+                position:      21,
+                targetElement: '_Excel'},
+  {
+    id: 'Validate',
+                purpose:       #STANDARD,
+                type:          #LINEITEM_REFERENCE,
+                label:         'Validations',
+                position:      30,
+                targetElement: '_Validate'},
+  {
+    id: 'Conversion',
+                purpose:       #STANDARD,
+                type:          #LINEITEM_REFERENCE,
+                label:         'Conversions',
+                position:      40,
+                targetElement: '_Conversion'},
+  {
+    id: 'TargetSystem',
+                purpose:       #STANDARD,
+                type:          #LINEITEM_REFERENCE,
+                label:         '目标系统',
+                position:      50,
+                targetElement: '_TargetSystem'}
+
+  ]
+  @UI.hidden: true
+  UUID;
+
+  @UI.lineItem: [ {
+    position: 10 ,
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 10
+  } ]
+  Zzmodule;
+
+  @UI.lineItem: [ {
+    position: 20 ,
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 20
+  } ]
+  Name;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

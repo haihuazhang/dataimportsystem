@@ -1,0 +1,53 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: '导入明细数据', 
+    typeNamePlural: '导入明细数据'
+  }
+}
+@UI.createHidden: true
+@UI.updateHidden: true
+@UI.deleteHidden: true
+annotate view ZHDC_DMP_T_IMP_I with
+{
+  @UI.facet: [ {
+    id: 'idIdentification', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: '导入明细数据', 
+    position: 10 
+  } ]
+  @UI.hidden: true
+  UUID;
+  
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  @UI.hidden: true
+  UUIDImport;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  @UI.hidden: true
+  DataJson;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  Line;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

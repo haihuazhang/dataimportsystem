@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service definition for ZHDC_DMP_T_IMPORT'
+define service ZHDUI_DMP_IMPORT_O4 {
+  expose ZHDC_DMP_T_IMPORT  as Import;
+  expose ZHDC_DMP_T_IMP_I   as ImportItem;
+  expose ZHDC_DMP_T_VERSION as Version;
+  expose ZHDC_DMP_CONF_DT;
+}

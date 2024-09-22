@@ -1,0 +1,67 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Conversion', 
+    typeNamePlural: 'Conversions'
+  }
+}
+annotate view ZHDC_DMP_CONF_CONVERSION with
+{
+  @UI.facet: [ {
+    id: 'idIdentification', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Conversion', 
+    position: 10 
+  } ]
+  @UI.hidden: true
+  UUID;
+  
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  @UI.hidden: true
+  UuidDatatype;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  Name;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  Class;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  Sequence;
+  
+  @UI.lineItem: [ {
+    position: 50 , 
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  RegExpression;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

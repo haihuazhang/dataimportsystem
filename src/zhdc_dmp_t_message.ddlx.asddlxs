@@ -1,0 +1,174 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'Uuid'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'Uuid'
+@UI: {
+  headerInfo: {
+    typeName: '消息',
+    typeNamePlural: '消息'
+  }
+}
+annotate view ZHDC_DMP_T_MESSAGE with
+{
+  @EndUserText.label: 'Uuid'
+  @UI.facet: [ {
+    label: '消息内容',
+    id: 'GeneralInfo',
+    purpose: #STANDARD,
+    position: 10 ,
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 10 ,
+    label: 'UUID'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 ,
+    label: 'UUID'
+  } ]
+  @UI.selectionField: [ {
+    position: 10
+  } ]
+  @UI.hidden: true
+  UUID;
+
+  @EndUserText.label: 'UuidVesion'
+  @UI.identification: [ {
+    position: 20 ,
+    label: 'UUID'
+  } ]
+  @UI.lineItem: [ {
+    position: 20 ,
+    label: 'UUID'
+  } ]
+  @UI.selectionField: [ {
+    position: 20
+  } ]
+  @UI.hidden: true
+  UUIDVesion;
+
+  @UI.identification: [ {
+    position: 30 ,
+    label: '行号'
+  } ]
+  @UI.lineItem: [ {
+    position: 30 ,
+    label: '行号'
+  } ]
+  @UI.selectionField: [ {
+    position: 30
+  } ]
+  Line;
+
+  @UI.identification: [ {
+    position: 40 ,
+    label: '消息状态'
+  } ]
+  @UI.lineItem: [ {
+    position: 40 ,
+    label: '消息状态'
+  } ]
+  @UI.selectionField: [ {
+    position: 40
+  } ]
+  @EndUserText.label: '消息状态'
+  Type;
+
+  @UI.identification: [ {
+    position: 50 ,
+    label: '消息类'
+  } ]
+  @UI.lineItem: [ {
+    position: 50 ,
+    label: '消息类'
+  } ]
+  @UI.selectionField: [ {
+    position: 50
+  } ]
+  @EndUserText.label: '消息类'
+  Id;
+
+  @UI.identification: [ {
+    position: 60 ,
+    label: '消息号码'
+  } ]
+  @UI.lineItem: [ {
+    position: 60 ,
+    label: '消息号码'
+  } ]
+  @UI.selectionField: [ {
+    position: 60
+  } ]
+  @EndUserText.label: '消息号码'
+  MsgNumber;
+
+  @UI.identification: [ {
+    position: 70 ,
+    label: '消息内容'
+  } ]
+  @UI.lineItem: [ {
+    position: 70 ,
+    label: '消息内容'
+  } ]
+  @UI.selectionField: [ {
+    position: 70
+  } ]
+  @EndUserText.label: '消息内容'
+  Message;
+
+  @UI.identification: [ {
+    position: 80 ,
+    label: '参数1'
+  } ]
+  @UI.lineItem: [ {
+    position: 80 ,
+    label: '参数1'
+  } ]
+  MessageV1;
+
+  @UI.identification: [ {
+    position: 90 ,
+    label: '参数2'
+  } ]
+  @UI.lineItem: [ {
+    position: 90 ,
+    label: '参数2'
+  } ]
+  MessageV2;
+
+  @UI.identification: [ {
+    position: 100 ,
+    label: 'Nachrichtenvariable'
+  } ]
+  @UI.lineItem: [ {
+    position: 100 ,
+    label: 'Nachrichtenvariable'
+  } ]
+  MessageV3;
+
+  @UI.identification: [ {
+    position: 110 ,
+    label: 'Nachrichtenvariable'
+  } ]
+  @UI.lineItem: [ {
+    position: 110 ,
+    label: 'Nachrichtenvariable'
+  } ]
+  MessageV4;
+
+
+  @UI.identification: [ {
+    position: 160 ,
+    label: 'Changed On'
+  } ]
+  @UI.lineItem: [ {
+    position: 160 ,
+    label: 'Changed On'
+  } ]
+  @UI.selectionField: [ {
+    position: 160
+  } ]
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

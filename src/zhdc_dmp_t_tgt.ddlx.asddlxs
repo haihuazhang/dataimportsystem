@@ -1,0 +1,248 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'Uuid'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'Uuid'
+@UI: {
+  headerInfo: {
+    typeName: '数据写入记录',
+    typeNamePlural: '数据写入记录'
+  }
+}
+@UI.updateHidden: true
+@UI.deleteHidden: true
+annotate view ZHDC_DMP_T_TGT with
+{
+  @EndUserText.label: 'Uuid'
+  @UI.facet: [ {
+    label: '数据写入记录',
+    id: 'GeneralInfo',
+    purpose: #STANDARD,
+    position: 10 ,
+    type: #IDENTIFICATION_REFERENCE
+  },
+  {
+        id: 'Job',
+        targetQualifier: 'Job_FG',
+        purpose:         #STANDARD,
+        type:            #FIELDGROUP_REFERENCE,
+        label:           '后台作业',
+        position:        20
+      },
+  {
+    label: '消息',
+    id:'Message',
+    purpose: #STANDARD,
+    position: 30,
+    type: #LINEITEM_REFERENCE,
+    targetElement: '_Message'
+  }
+
+   ]
+  @UI.identification: [ {
+    position: 10 ,
+    label: 'UUID'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 ,
+    label: 'UUID'
+  } ]
+  @UI.selectionField: [ {
+    position: 10
+  } ]
+  @UI.hidden: true
+  UUID;
+
+  @EndUserText.label: 'UuidVersion'
+  @UI.identification: [ {
+    position: 20 ,
+    label: 'UUID'
+  } ]
+  @UI.lineItem: [ {
+    position: 20 ,
+    label: 'UUID'
+  } ]
+  @UI.selectionField: [ {
+    position: 20
+  } ]
+  @UI.hidden: true
+  UUIDVersion;
+
+  @EndUserText.label: '目标系统配置'
+  @UI.identification: [ {
+    position: 30 ,
+    label: '目标系统配置'
+  } ]
+  @UI.lineItem: [ {
+    position: 30 ,
+    label: '目标系统配置'
+  } ]
+  @UI.selectionField: [ {
+    position: 30
+  } ]
+  UUIDTgt;
+
+  @UI.identification: [ {
+    position: 40 ,
+    label: '名称'
+  } ]
+  @UI.lineItem: [ {
+    position: 40 ,
+    label: '名称'
+  } ]
+  @UI.selectionField: [ {
+    position: 40
+  } ]
+  Name;
+
+  @UI.selectionField: [ {
+  position: 60
+  } ]
+  @EndUserText.label: '处理状态'
+  Status;
+
+  @UI.lineItem: [ {
+  position: 100,
+  importance: #HIGH,
+  label: '运行状态',
+  criticality: 'StatusCriticality'
+  } ]
+  @UI: { fieldGroup: [ { qualifier: 'Job_FG',
+                         position: 60 ,
+                         label: '运行状态',
+                         criticality: 'StatusCriticality' } ] ,
+         dataPoint:    { title: '运行状态',
+                         targetValueElement: 'StatusText',
+                         criticality: 'StatusCriticality',
+                         criticalityRepresentation: #WITH_ICON }
+       }
+  StatusText;
+
+  //  @UI.identification: [ {
+  //    position: 90 ,
+  //    label: '目标系统记录时间'
+  //  } ]
+  @UI.lineItem: [ {
+    position: 60 ,
+    label: '目标系统记录时间'
+  } ]
+  @UI.selectionField: [ {
+    position: 90
+  } ]
+  TimestampTgt;
+
+  @UI.identification: [ {
+    position: 100 ,
+    label: '目标系统写入开始时间'
+  } ]
+  //  @UI.lineItem: [ {
+  //    position: 100 ,
+  //    label: '目标系统写入开始时间'
+  //  } ]
+  @UI.selectionField: [ {
+    position: 100
+  } ]
+  TimestampDmpStart;
+
+  @UI.identification: [ {
+    position: 110 ,
+    label: '目标系统写入结束时间'
+  } ]
+  //  @UI.lineItem: [ {
+  //    position: 110 ,
+  //    label: '目标系统写入结束时间'
+  //  } ]
+  @UI.selectionField: [ {
+    position: 110
+  } ]
+  TimestampDmpEnd;
+
+  //  @EndUserText.label: 'Job Count'
+  //  //  @UI.identification: [ {
+  //  //    position: 60
+  //  //  } ]
+  //  @UI.lineItem: [ {
+  //    position: 60
+  //  } ]
+  //  //  @UI.selectionField: [ {
+  //  //    position: 60
+  //  //  } ]
+  //  @UI.fieldGroup: [ { position: 10, qualifier: 'Job_FG' } ]
+  //  Jobcount;
+  //
+  //  @EndUserText.label: 'Job Name'
+  //  //  @UI.identification: [ {
+  //  //    position: 70
+  //  //  } ]
+  //  @UI.lineItem: [ {
+  //    position: 70
+  //  } ]
+  //  //  @UI.selectionField: [ {
+  //  //    position: 70
+  //  //  } ]
+  //  @UI.fieldGroup: [ { position: 20, qualifier: 'Job_FG' } ]
+  //  Jobname;
+  //
+  //  //  @UI.identification: [ {
+  //  //    position: 80 ,
+  //  //    label: 'Log Handle'
+  //  //  } ]
+  //  @UI.lineItem: [ {
+  //    position: 80 ,
+  //    label: 'Log Handle'
+  //  } ]
+  //  //  @UI.selectionField: [ {
+  //  //    position: 80
+  //  //  } ]
+  //  @UI.fieldGroup: [ { position: 30, qualifier: 'Job_FG' } ]
+  //  Loghandle;
+
+  @UI.identification: [ {
+    position: 160 ,
+    label: 'Changed On'
+  } ]
+  @UI.lineItem: [ {
+    position: 160 ,
+    label: 'Changed On'
+  } ]
+  @UI.selectionField: [ {
+    position: 160
+  } ]
+  @UI.hidden: true
+  LocalLastChangedAt;
+  @UI.lineItem: [ {
+  position: 180,
+  importance: #HIGH,
+  label: 'Job Status',
+  criticality: 'JobStatusCriticality'
+  } ]
+  @UI: { fieldGroup: [ { qualifier: 'Job_FG',
+                         position: 40 ,
+                         label: 'Job Status',
+                         criticality: 'JobStatusCriticality' } ] ,
+         dataPoint:    { title: 'Generation Job Status',
+                         targetValueElement: 'JobStatusText',
+                         criticality: 'JobStatusCriticality',
+                         criticalityRepresentation: #WITH_ICON }
+       }
+  JobStatusText;
+
+  @UI.lineItem: [ {
+  position: 190,
+  importance: #HIGH,
+  label: 'Log',
+  criticality: 'LogStatusCriticality',
+  type: #WITH_URL,
+  url: 'ApplicationLogUrl'
+  } ]
+  @UI: { fieldGroup: [ { qualifier: 'Job_FG',
+                         position: 50 ,
+                         label: 'Log',
+                         criticality: 'LogStatusCriticality' } ] ,
+         dataPoint:    { title: 'Generation Log',
+                         targetValueElement: 'LogStatusText',
+                         criticality: 'LogStatusCriticality',
+                         criticalityRepresentation: #WITH_ICON }
+       }
+  LogStatusText;
+}

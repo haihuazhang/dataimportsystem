@@ -1,0 +1,76 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Excel',
+    typeNamePlural: 'Excels'
+  }
+}
+annotate view ZHDC_DMP_CONF_EXCELCONFIG with
+{
+  @UI.facet: [ {
+    id: 'idIdentification',
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Excel',
+    position: 10
+  },  {
+    id: 'ExcelSheetConfig',
+                purpose:       #STANDARD,
+                type:          #LINEITEM_REFERENCE,
+                label:         'Sheet页配置',
+                position:      20,
+                targetElement: '_ExcelStructure'}
+   ]
+  @UI.hidden: true
+  UUID;
+
+  @UI.lineItem: [ {
+    position: 10 ,
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 10
+  } ]
+  @UI.hidden: true
+  UUIDDataType;
+
+  @UI.lineItem: [ {
+    position: 20 ,
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 20
+  } ]
+  Name;
+
+  @UI.lineItem: [ {
+    position: 30 ,
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 30
+  } ]
+  @UI.hidden: true
+  MimeType;
+
+  @UI.lineItem: [ {
+    position: 40 ,
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 40
+  } ]
+  @UI.hidden: true
+  FileName;
+
+  @UI.lineItem: [ {
+    position: 50 ,
+    importance: #MEDIUM
+  } ]
+  @UI.identification: [ {
+    position: 50
+  } ]
+  Template;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

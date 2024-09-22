@@ -1,0 +1,16 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "数据管理系统-数据写入Job",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZHDCL_DMP_EXPORT_PROCESS"
+  },
+  "parameters": [
+    {
+      "name": "P_ID"
+    }
+  ]
+}

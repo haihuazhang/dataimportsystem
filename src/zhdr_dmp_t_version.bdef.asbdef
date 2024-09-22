@@ -1,0 +1,241 @@
+managed implementation in class ZBP_R_HDT_DMP_VERSION000 unique;
+strict ( 2 );
+with draft;
+define behavior for ZHDR_DMP_T_VERSION alias Version
+implementation in class ZBP_R_HDT_DMP_VERSION000 unique
+persistent table zhdt_dmp_version
+draft table zhdt_dmp_ve000_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global ) with additional save
+
+{
+  field ( readonly )
+  Uuid,
+  StatusText,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  LastChangedAt,
+  LocalLastChangedAt;
+
+  field ( numbering : managed )
+  Uuid;
+
+
+  create;
+  update;
+  delete;
+
+  association _VersionData { create; with draft; }
+  association _TargetRecord { create; with draft; }
+  //  association _Message { create; with draft; }
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  factory action CreateVersionWithDialog parameter ZHDR_DMP_S_VERSION_PARAM [0..1];
+
+  mapping for zhdt_dmp_version
+    {
+      Uuid               = uuid;
+      UuidSourceVersion  = uuid_source_version;
+      UuidImport         = uuid_import;
+      Version            = version;
+      IsInitVersion      = is_init_version;
+      Status             = status;
+      Jobcount           = jobcount;
+      Jobname            = jobname;
+      Loghandle          = loghandle;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+define behavior for ZHDR_DMP_T_DATA alias VersionData
+implementation in class ZBP_R_HDT_DMP_DATA unique
+persistent table zhdt_dmp_data
+draft table zhdt_dmp_data_d
+etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+//authorization master( global )
+lock dependent by _Version
+authorization dependent by _Version
+
+{
+  field ( readonly )
+  Uuid,
+  UUIDVersion,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  LastChangedAt,
+  LocalLastChangedAt;
+
+  field ( numbering : managed )
+  Uuid;
+
+
+  //  create;
+  update;
+  delete;
+  association _Version { with draft; }
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  //  draft action Edit;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+
+  mapping for zhdt_dmp_data
+    {
+      Uuid               = uuid;
+      UuidVersion        = uuid_version;
+      DataJson           = data_json;
+      Line               = line;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+define behavior for ZHDR_DMP_T_TGT alias TargetRecord
+implementation in class ZBP_R_HDT_DMP_TGT_R unique
+persistent table zhdt_dmp_tgt_r
+draft table zhdt_dmp_tgt_r_d
+etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+//authorization master( global )
+lock dependent by _Version
+authorization dependent by _Version with additional save
+{
+  field ( readonly )
+  Uuid,
+  UUIDVersion,
+  StatusText,
+  TimestampTgt,
+  TimestampDmpStart,
+  TimestampDmpEnd,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  LastChangedAt,
+  LocalLastChangedAt;
+
+  field ( numbering : managed )
+  Uuid;
+
+  association _Version { with draft; }
+
+  association _Message { create; with draft; }
+  //  create;
+
+  update;
+  delete;
+
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  //  draft action Edit;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+
+  mapping for zhdt_dmp_tgt_r
+    {
+      Uuid               = uuid;
+      UuidVersion        = uuid_version;
+      UuidTgt            = uuid_tgt;
+      Name               = name;
+      Status             = status;
+      Jobcount           = jobcount;
+      Jobname            = jobname;
+      Loghandle          = loghandle;
+      TimestampTgt       = timestamp_tgt;
+      TimestampDmpStart  = timestamp_dmp_start;
+      TimestampDmpEnd    = timestamp_dmp_end;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+define behavior for ZHDR_DMP_T_MESSAGE alias Message
+implementation in class ZBP_R_HDT_DMP_MESSAGE unique
+persistent table zhdt_dmp_message
+draft table zhdt_dmp_messa_d
+etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+//authorization master( global )
+lock dependent by _Version
+authorization dependent by _Version
+
+{
+  field ( readonly )
+  Uuid,
+  UUIDVesion,
+  UUIDItem,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  LastChangedAt,
+  LocalLastChangedAt;
+
+  field ( numbering : managed )
+  Uuid;
+
+  association _Version { with draft; }
+  association _TargetRecord { with draft; }
+
+
+  //  create;
+  update;
+  delete;
+
+  //  draft action Activate optimized;
+  //  draft action Discard;
+  //  draft action Edit;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+
+  mapping for zhdt_dmp_message
+    {
+      Uuid               = uuid;
+      UUIDItem = uuid_item;
+      UuidVesion         = uuid_vesion;
+      Line               = line;
+      Type               = type;
+      Id                 = id;
+      MsgNumber          = msg_number;
+      Message            = message;
+      MessageV1          = message_v1;
+      MessageV2          = message_v2;
+      MessageV3          = message_v3;
+      MessageV4          = message_v4;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

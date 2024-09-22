@@ -1,0 +1,10 @@
+@EndUserText.label: 'Service definition for ZHDC_DMP_CONF_DT'
+define service ZHDUI_DMP_CONF_O4 {
+  expose ZHDC_DMP_CONF_DT             as DataType;
+  expose ZHDC_DMP_CONF_SRC            as SourceSystem;
+  expose ZHDC_DMP_CONF_EXCELCONFIG    as Excel;
+  expose ZHDC_DMP_CONF_EXCELSTRUCTURE as ExcelStructure;
+  expose ZHDC_DMP_CONF_VALIDATE       as Validate;
+  expose ZHDC_DMP_CONF_CONVERSION     as Conversion;
+  expose ZHDC_DMP_CONF_TGT            as TargetSystem;
+}

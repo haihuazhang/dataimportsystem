@@ -1,0 +1,153 @@
+managed implementation in class ZBP_R_HDT_DMP_IMPORT unique;
+strict ( 2 );
+with draft;
+define behavior for ZHDR_DMP_T_IMPORT alias Import
+implementation in class ZBP_R_HDT_DMP_IMPORT unique
+persistent table zhdt_dmp_import
+draft table zhdt_dmp_impor_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global ) with additional save
+
+{
+  field ( readonly )
+  UUID,
+  StatusText,
+  //  TimestampSrc,
+  //  Status,
+  //  Jobcount,
+  //  Jobname,
+  //  LogHandle,
+  //  TimestampDmpStart,
+  //  DataType,
+  //  TimestampDmpEnd;
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+  //  DataType,
+  field ( mandatory )
+  name,
+  ImportType1,
+  UUIDDatatype;
+
+  field ( features : instance )
+  TimestampSrc,
+  Content,
+  UUIDCommExcel,
+  ImportSystem,
+  DataType;
+
+
+
+
+  field ( numbering : managed )
+  UUID;
+
+  create;
+  update;
+  delete;
+
+  association _ImportItem { create; with draft; }
+
+
+
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare
+  {
+    validation checkFields;
+  }
+
+  validation checkFields on save { create; update; }
+
+  determination determinateFields on save { create; }
+  determination determinateImportTypeUUID on modify { field DataType; }
+  determination determinateImportSystemUUID on modify { field ImportSystem; }
+
+
+  action CreateInitVersion parameter ZHDR_DMP_S_VERSION_PARAM;
+  //  determination
+
+  mapping for zhdt_dmp_import
+    {
+      UUID               = uuid;
+      UuidDatatype       = uuid_datatype;
+      UuidCommExcel      = uuid_comm_excel;
+      DataType           = data_type;
+      ImportSystem       = import_system;
+      Name               = name;
+      ImportType1        = import_type;
+      WhereConditions    = where_conditions;
+      TimestampSrc       = timestamp_src;
+      TimestampDmpStart  = timestamp_dmp_start;
+      TimestampDmpEnd    = timestamp_dmp_end;
+      Status             = status;
+      Jobcount           = jobcount;
+      Jobname            = jobname;
+      Loghandle          = loghandle;
+      MimeType           = mime_type;
+      FileName           = file_name;
+      Content            = content;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+
+
+define behavior for ZHDR_DMP_T_IMP_I alias ImportItem
+implementation in class ZBP_R_HDT_DMP_IMP_I unique
+persistent table zhdt_dmp_imp_i
+draft table zhdt_dmp_imp_i_d
+etag master LocalLastChangedAt
+lock dependent by _Import
+authorization dependent by _Import
+//lock master total etag LastChangedAt
+//authorization master( global )
+
+
+{
+  field ( readonly )
+  UUIDImport,
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChangedAt;
+
+  association _Import { with draft; }
+
+  field ( numbering : managed, readonly ) UUID;
+
+  //  create;
+  update;
+  delete;
+
+  //draft action Edit;
+  //draft action Activate optimized;
+  //draft action Discard;
+  //draft action Resume;
+  //draft determine action Prepare;
+
+  mapping for zhdt_dmp_imp_i
+    {
+      UUID               = uuid;
+      UUIDImport         = uuid_import;
+      DataJson           = data_json;
+      Line               = line;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
