@@ -1,0 +1,67 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata4/sap/zhdui_dmp_version_o4/srvd/sap/zhdui_dmp_version_o4/0001/$metadata">
+        <edmx:Include Namespace="com.sap.gateway.srvd.zhdui_dmp_version_o4.v0001" Alias="SAP__self"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="SAP__self.VersionType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="版本号"/>
+                            <PropertyValue Property="Value" Path="Version"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="UUID"/>
+                            <PropertyValue Property="Value" Path="UUID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="源版本"/>
+                            <PropertyValue Property="Value" Path="UUIDSourceVersion"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="数据导入记录"/>
+                            <PropertyValue Property="Value" Path="UUIDImport"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="是否初始版本"/>
+                            <PropertyValue Property="Value" Path="IsInitVersion"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="运行状态"/>
+                            <PropertyValue Property="Criticality" Path="StatusCriticality"/>
+                            <PropertyValue Property="Value" Path="StatusText"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Changed On"/>
+                            <PropertyValue Property="Value" Path="LocalLastChangedAt"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Job Status"/>
+                            <PropertyValue Property="Criticality" Path="JobStatusCriticality"/>
+                            <PropertyValue Property="Value" Path="JobStatusText"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataFieldWithUrl">
+                            <PropertyValue Property="Label" String="Log"/>
+                            <PropertyValue Property="Criticality" Path="LogStatusCriticality"/>
+                            <PropertyValue Property="Value" Path="LogStatusText"/>
+                            <PropertyValue Property="Url" Path="ApplicationLogUrl"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="生成版本"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zhdui_dmp_version_o4.v0001.CreateVersionWithDialog(com.sap.gateway.srvd.zhdui_dmp_version_o4.v0001.VersionType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                            <Annotation Term="UI.Hidden"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

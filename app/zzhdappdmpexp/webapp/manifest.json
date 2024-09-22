@@ -1,0 +1,234 @@
+{
+  "_version": "1.64.0",
+  "sap.app": {
+    "id": "zzhdappdmpexp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.14.5",
+      "toolsId": "05a07afb-1b3c-4ed4-b37e-08a18239e38c"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata4/sap/zhdui_dmp_version_o4/srvd/sap/zhdui_dmp_version_o4/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "zzhdappdmpexp-display": {
+          "semanticObject": "zzhdappdmpexp",
+          "action": "display",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.124.6",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zzhdappdmpexp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "control/json/json-viewer.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "VersionList",
+          "target": "VersionList"
+        },
+        {
+          "pattern": "Version({key}):?query:",
+          "name": "VersionObjectPage",
+          "target": "VersionObjectPage"
+        },
+        {
+          "pattern": "Version({key})/_VersionData({key2}):?query:",
+          "name": "VersionDataObjectPage",
+          "target": "VersionDataObjectPage"
+        },
+        {
+          "pattern": "Version({key})/_TargetRecord({key2}):?query:",
+          "name": "TargetRecordObjectPage",
+          "target": "TargetRecordObjectPage"
+        }
+      ],
+      "targets": {
+        "VersionList": {
+          "type": "Component",
+          "id": "VersionList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Version",
+              "variantManagement": "Page",
+              "navigation": {
+                "Version": {
+                  "detail": {
+                    "route": "VersionObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "VersionObjectPage": {
+          "type": "Component",
+          "id": "VersionObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Version",
+              "controlConfiguration": {
+                "_VersionData/@com.sap.vocabularies.UI.v1.LineItem": {
+                  "columns": {
+                    "CustomColumnOnObjectPage": {
+                      "header": "数据内容",
+                      "width": "15em",
+                      "importance": "High",
+                      "horizontalAlign": "Center",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "DataField::Line"
+                      },
+                      "template": "zzhdappdmpexp.ext.list.CustomColumnShowJson",
+                      "availability": "Default",
+                      "properties": [
+                        "DataJson",
+                        "Line"
+                      ]
+                    }
+                  }
+                }
+              },
+              "navigation": {
+                "_VersionData": {
+                  "detail": {
+                    "route": "VersionDataObjectPage"
+                  }
+                },
+                "_TargetRecord": {
+                  "detail": {
+                    "route": "TargetRecordObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "VersionDataObjectPage": {
+          "type": "Component",
+          "id": "VersionDataObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Version/_VersionData"
+            }
+          }
+        },
+        "TargetRecordObjectPage": {
+          "type": "Component",
+          "id": "TargetRecordObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Version/_TargetRecord"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

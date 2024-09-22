@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zzhdappdmpver
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: my200132
+          url: https://my200132-api.s4hana.sapcloud.cn
+        app:
+          name: ZZHDAPPDMPVER
+          description: 管理数据版本
+          package: ZHD_DMP
+          transport: XFCK900306
+        exclude:
+          - /test/

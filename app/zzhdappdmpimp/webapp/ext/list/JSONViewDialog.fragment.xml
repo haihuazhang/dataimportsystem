@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+>
+    <Dialog title="数据预览">
+        <core:HTML
+            id="jsonViewer"
+            content=''
+        />
+        <endButton>
+            <Button text="关闭" press=".onJSONViewDialogClose"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

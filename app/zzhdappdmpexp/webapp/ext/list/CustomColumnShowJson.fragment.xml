@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Button
+		text="预览"
+		press="handler.previewButtonPressed"
+		core:require="{handler: 'zzhdappdmpexp/ext/list/CustomColumnShowJson'}"
+	/>
+</core:FragmentDefinition>
