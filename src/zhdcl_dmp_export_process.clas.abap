@@ -384,7 +384,7 @@ CLASS ZHDCL_DMP_EXPORT_PROCESS IMPLEMENTATION.
                              uuid = uuid
             %target = VALUE #( (
 *                                   DataJson = ls_data-data_json
-                                  %cid = <fs_item>-line
+                                  %cid = cl_system_uuid=>create_uuid_c22_static(  )
                                   Line = <fs_item>-line
                                   Type = <fs_message>-type
                                   Id = <fs_message>-id
